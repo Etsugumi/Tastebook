@@ -1,0 +1,24 @@
+﻿@model Tastebook.Models.ListViewModel
+
+@{
+    ViewBag.Title = "RecipesList";
+}
+
+<h2>RecipesList</h2>
+
+<ul>
+    @foreach (var recipe in Model.Recipes)
+    {
+        <li>
+            @recipe.Name | Trudność: @recipe.Difficulty | Wielkość: @recipe.DishSize |
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("USUN", "DeleteRecipe", "Recipe", new { id = @recipe.RecipeId }, null)
+                <text>
+                    |
+                </text>
+                @Html.ActionLink("EDYTUJ", "EditRecipe", "Recipe", new { id = @recipe.RecipeId }, null)
+            }
+        </li>
+    }
+</ul>
