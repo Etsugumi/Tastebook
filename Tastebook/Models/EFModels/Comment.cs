@@ -19,9 +19,6 @@ namespace Tastebook.Models.EFModels
 
         public List<string> Likes { get; set; }
 
-        public Guid RecipeId { get; set; }
-        public virtual Recipe Recipe { get; set; }
-
         public Comment()
         {
             Created = DateTime.Now;

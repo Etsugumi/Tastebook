@@ -17,8 +17,5 @@ namespace Tastebook.Models.EFModels
         public string Name { get; set; }
         [Required]
         public string Amount { get; set; }
-
-        public Guid RecipeId { get; set; }
-        public virtual Recipe Recipe { get; set; }
     }
 }

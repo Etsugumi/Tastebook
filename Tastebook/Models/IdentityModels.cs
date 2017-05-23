@@ -33,6 +33,9 @@ namespace Tastebook.Models
 
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Ingredient> Ingredients { get; set; }        
+        public DbSet<Ingredient> Ingredients { get; set; }
+
+        public DbSet<RecipeIngredientMap> IngredientMaps { get; set; }
+        public DbSet<RecipeCommentMap> CommentMaps { get; set; }
     }
 }

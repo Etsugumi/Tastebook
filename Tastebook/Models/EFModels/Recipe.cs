@@ -16,28 +16,43 @@ namespace Tastebook.Models.EFModels
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
         [Required]
         public string Text { get; set; }
+
         [Required]
-        [Range(0,2)]
+        [Range(0, 2)]
         public int Difficulty { get; set; }
+
         [Required]
         [RegularExpression("[0-9]*")]
         public int DishSize { get; set; }
+
         [Required]
         public RecipeType RecipeType { get; set; }
 
         public DateTime? Created { get; set; }
-        public DateTime? Edited { get; set; }                
+        public DateTime? Edited { get; set; }
         public string AuthorId { get; set; }
-
-        public virtual IList<Ingredient> Ingredients { get; set; }
-        public virtual IList<Comment> Comments { get; set; }
 
         public Recipe()
         {
             Created = DateTime.Now;
             Edited = DateTime.Now;
         }
+    }
+
+    public class RecipeIngredientMap
+    {
+        public int Id { get; set; }
+        public Guid RecipeId { get; set; }
+        public Guid IngredientId { get; set; }
+    }
+
+    public class RecipeCommentMap
+    {
+        public int Id { get; set; }
+        public Guid RecipeId { get; set; }
+        public Guid CommentId { get; set; }
     }
 }
