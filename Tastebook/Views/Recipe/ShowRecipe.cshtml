@@ -1,0 +1,49 @@
+﻿@model Tastebook.Models.RecipeDetailsViewModel
+    
+<div>
+    <h3>@Model.Recipe.Name</h3>
+    <hr />
+    <div>
+        <h6>Typ: @Model.Recipe.RecipeType</h6>
+        <h6>Trudność: @Model.Recipe.Difficulty</h6>
+        <h6>Wielkość porcji: @Model.Recipe.DishSize</h6>
+    </div>
+    <hr/>
+    <p>@Model.Recipe.Text</p>
+    <hr />
+    <h5><strong>Składniki</strong></h5>
+    <ul>
+        @foreach (var ing in Model.Ingredients)
+        {
+            <li>@ing.Name (@ing.Amount)</li>
+        }
+    </ul>
+    
+    <br />
+    <br />
+    
+    <hr />
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+        using (Html.BeginForm("AddComment", "Comment", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Recipe.RecipeId)
+
+            @Html.TextBoxFor(model => model.CommentDummy.Text, new { @class = "form-control", placeholder = "Skomentuj przepis..." })
+
+            <button type="submit" class="btn btn-success">Dodaj komentarz</button>
+        }
+    }
+
+    <hr/>
+
+    <h5><strong>Komentarze</strong></h5>
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>@comment.AuthorName | @comment.Text</li>
+        }
+    </ul>
+</div>

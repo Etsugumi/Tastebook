@@ -31,6 +31,8 @@ namespace Tastebook.Models.EFModels
         [Required]
         public RecipeType RecipeType { get; set; }
 
+        public bool? isCompleted { get; set; }
+
         public DateTime? Created { get; set; }
         public DateTime? Edited { get; set; }
         public string AuthorId { get; set; }

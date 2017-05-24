@@ -34,16 +34,26 @@
         <hr />
 
         <text>
-            <div class="form-group">                
+            <div id="ingrInputs" class="form-group">                
                 @Html.TextBoxFor(model => model.Ingredient.Name, new { @class = "form-control", placeholder = "Nazwa składnika" })
                 @Html.TextBoxFor(model => model.Ingredient.Amount, new { @class = "form-control", placeholder = "Ilość składnika" })
             </div>
 
-            <button type="submit" class="btn btn-default">Dodaj składnik</button>
+            <button id="addIngredientBtn" type="submit" class="btn btn-default">Dodaj składnik</button>
         </text>
     }
 
     <hr />
 
-    <a href="@Url.Action("RecipesList")" class="btn btn-success">Zakończ tworzenie przepisu</a>
+    <a href="@Url.Action("CompleteRecipe", new { id = @Model.RecipeId })" class="btn btn-success">Zakończ tworzenie przepisu</a>
 </div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            var inputs = $("#ingrInputs input");
+            inputs.val("");
+        });
+    </script>
+}

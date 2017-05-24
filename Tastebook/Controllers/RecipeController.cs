@@ -17,25 +17,63 @@ namespace Tastebook.Controllers
         {
             var model = new ListViewModel
             {
-                Recipes = Db.Recipes.ToList()
+                Recipes = Db.Recipes.Where(r => r.isCompleted == true).ToList()
+            };
+
+            return View(model);
+        }
+
+        //-------------------------------------------------------------- SHOW RECIPE
+
+        [AllowAnonymous]
+        public ActionResult ShowRecipe(Guid id)
+        {
+            var recipe = Db.Recipes.Find(id);
+
+            var ingredientMaps = Db.IngredientMaps.Where(im => im.RecipeId.Equals(id)).ToList();
+            var ingredients = new List<Ingredient>();
+
+            foreach (var map in ingredientMaps)
+            {
+                var ingredient = Db.Ingredients.Find(map.IngredientId);
+                ingredients.Add(ingredient);
+            }
+            
+            var commentsMaps = Db.CommentMaps.Where(im => im.RecipeId.Equals(id)).ToList();
+            var comments = new List<Comment>();
+
+            foreach (var map in commentsMaps)
+            {
+                var comment = Db.Comments.Find(map.CommentId);
+                comments.Add(comment);
+            }
+
+            var model = new RecipeDetailsViewModel
+            {
+                Recipe = recipe,
+                Ingredients = ingredients,
+                Comments = comments
             };
 
             return View(model);
         }
 
         //-------------------------------------------------------------- ADD RECIPE
-        
+
         public ActionResult AddRecipe()
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddRecipe(Recipe model)
         {
             if (ModelState.IsValid)
             {
+                model.isCompleted = false;
+                model.AuthorId = User.Identity.GetUserId();
+
                 Db.Recipes.Add(model);
                 Db.SaveChanges();
 
@@ -51,7 +89,7 @@ namespace Tastebook.Controllers
         {
             return HttpNotFound();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditRecipe(Recipe model)
@@ -68,12 +106,26 @@ namespace Tastebook.Controllers
             if (model != null)
             {
                 RemoveIngredients(id);
+                RemoveComments(id);
 
                 Db.Recipes.Remove(model);
-                Db.SaveChanges();                
+                Db.SaveChanges();
             }
 
             return RedirectToAction("RecipesList");
+        }
+
+        private void RemoveComments(Guid recipeId)
+        {
+            var mappings = Db.CommentMaps.Where(m => m.RecipeId.Equals(recipeId)).ToList();
+
+            foreach (var map in mappings)
+            {
+                var comment = Db.Comments.Find(map.CommentId);
+                Db.Comments.Remove(comment);
+                Db.CommentMaps.Remove(map);
+                Db.SaveChanges();
+            }
         }
 
         private void RemoveIngredients(Guid recipeId)
@@ -87,6 +139,22 @@ namespace Tastebook.Controllers
                 Db.IngredientMaps.Remove(map);
                 Db.SaveChanges();
             }
+        }
+
+        //-------------------------------------------------------------- COMPLETE RECIPE CREATION
+
+        public ActionResult CompleteRecipe(Guid? id)
+        {
+            var recipe = Db.Recipes.Find(id);
+            if (recipe == null)
+                return HttpNotFound();
+
+            recipe.isCompleted = true;
+            recipe.Created = DateTime.Now;
+            Db.Entry(recipe).State = EntityState.Modified;
+            Db.SaveChanges();
+
+            return RedirectToAction("RecipesList");
         }
 
         //-------------------------------------------------------------- ADD INGREDIENT
@@ -112,18 +180,18 @@ namespace Tastebook.Controllers
             var item = Session["ingrBag"] as IngredientViewModel;
 
             if (ModelState.IsValid)
-            {                
+            {
                 Db.Ingredients.Add(model.Ingredient);
                 Db.SaveChanges();
 
                 CreateIngredientMap(model);
 
                 if (item.Ingredients.FirstOrDefault(x => x.Name.Equals(model.Ingredient.Name)) == null)
-                {                    
+                {
                     item.Ingredients.Add(model.Ingredient);
                     item.Ingredient = null;
                 }
-                    
+
             }
 
             Session["ingrBag"] = item;

@@ -19,4 +19,13 @@ namespace Tastebook.Models
         public Recipe Recipe { get; set; }
         public Guid RecipeId { get; set; }
     }
+
+    public class RecipeDetailsViewModel
+    {
+        public Recipe Recipe { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
+        public List<Comment> Comments { get; set; }
+
+        public Comment CommentDummy { get; set; }
+    }
 }

@@ -17,8 +17,6 @@ namespace Tastebook.Models.EFModels
         public string Text { get; set; }
         public string AuthorName { get; set; }
 
-        public List<string> Likes { get; set; }
-
         public Comment()
         {
             Created = DateTime.Now;
