@@ -27,5 +27,8 @@ namespace Tastebook.Models
         public List<Comment> Comments { get; set; }
 
         public Comment CommentDummy { get; set; }
+
+        public bool CanLike { get; set; }
+        public int Likes { get; set; }
     }
 }

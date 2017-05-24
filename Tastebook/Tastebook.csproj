@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="evohtmltopdf">
+      <HintPath>..\HtmlToPDF\evohtmltopdf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -220,6 +223,14 @@
     <Compile Include="Migrations\201705241848141_opa.Designer.cs">
       <DependentUpon>201705241848141_opa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705241948277_KKA.cs" />
+    <Compile Include="Migrations\201705241948277_KKA.Designer.cs">
+      <DependentUpon>201705241948277_KKA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705242040001_KKAD.cs" />
+    <Compile Include="Migrations\201705242040001_KKAD.Designer.cs">
+      <DependentUpon>201705242040001_KKAD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EFModels\Comment.cs" />
@@ -340,6 +351,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705241848141_opa.resx">
       <DependentUpon>201705241848141_opa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705241948277_KKA.resx">
+      <DependentUpon>201705241948277_KKA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705242040001_KKAD.resx">
+      <DependentUpon>201705242040001_KKAD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

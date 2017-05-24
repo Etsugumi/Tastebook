@@ -44,6 +44,15 @@ namespace Tastebook.Models.EFModels
         }
     }
 
+    public class Like
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public string UserId { get; set; }
+        public Guid RecipeId { get; set; }
+    }
+
     public class RecipeIngredientMap
     {
         public int Id { get; set; }

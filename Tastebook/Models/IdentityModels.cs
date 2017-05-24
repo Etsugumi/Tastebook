@@ -31,6 +31,7 @@ namespace Tastebook.Models
             return new ApplicationDbContext();
         }
 
+        public DbSet<Like> Likes { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }

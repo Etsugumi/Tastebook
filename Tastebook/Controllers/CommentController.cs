@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Tastebook.Models;
 using Tastebook.Models.EFModels;
 
@@ -20,6 +21,7 @@ namespace Tastebook.Controllers
             if (comment != null)
             {
                 comment.AuthorName = User.Identity.Name;
+                comment.AuthorId = User.Identity.GetUserId();
                 comment.Created = DateTime.Now;
 
                 Db.Comments.Add(comment);
@@ -41,6 +43,18 @@ namespace Tastebook.Controllers
 
             Db.CommentMaps.Add(map);
             Db.SaveChanges();
+        }
+
+        public ActionResult DeleteComment(Guid commentId, string returnUrl)
+        {
+            var comment = Db.Comments.Find(commentId);
+            var map = Db.CommentMaps.FirstOrDefault(m => m.CommentId.Equals(commentId));
+
+            Db.Comments.Remove(comment);
+            Db.CommentMaps.Remove(map);
+            Db.SaveChanges();
+
+            return Redirect(returnUrl);
         }
     }
 }

@@ -1,0 +1,16 @@
+##########################
+DONE:
+##########################
+
+- Dodawanie przepisu
+	* Dodawanie opisu
+	* Dodawanie tytu³u
+	* Dodawanie typu
+	* Dodawanie trudnoœci
+	* Dodawanie wielkoœci dania
+	* Dodawanie sk³adników
+- Usuwanie przepisu
+- Likowanie przepisu
+- Odlikowanie przepisu
+- Dodawanie komentarzy
+- Usuwanie komentarzy

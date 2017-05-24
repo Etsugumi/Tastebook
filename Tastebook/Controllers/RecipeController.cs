@@ -52,10 +52,26 @@ namespace Tastebook.Controllers
             {
                 Recipe = recipe,
                 Ingredients = ingredients,
-                Comments = comments
+                Comments = comments,
+                CanLike = CanLike(recipe.RecipeId),
+                Likes = Db.Likes.Count(l => l.RecipeId.Equals(recipe.RecipeId))
             };
 
             return View(model);
+        }
+
+        private bool CanLike(Guid recipeId)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var likes = Db.Likes.FirstOrDefault(l => l.UserId.Equals(userId) && l.RecipeId.Equals(recipeId));
+
+                if(likes == null)
+                    return true;
+            }
+
+            return false;
         }
 
         //-------------------------------------------------------------- ADD RECIPE
@@ -107,12 +123,24 @@ namespace Tastebook.Controllers
             {
                 RemoveIngredients(id);
                 RemoveComments(id);
+                RemoveLikes(id);
 
                 Db.Recipes.Remove(model);
                 Db.SaveChanges();
             }
 
             return RedirectToAction("RecipesList");
+        }
+
+        private void RemoveLikes(Guid recipeId)
+        {
+            var likesToRemove = Db.Likes.Where(l => l.RecipeId.Equals(recipeId)).ToList();
+
+            foreach (var like in likesToRemove)
+            {
+                Db.Likes.Remove(like);
+                Db.SaveChanges();
+            }
         }
 
         private void RemoveComments(Guid recipeId)
@@ -155,6 +183,35 @@ namespace Tastebook.Controllers
             Db.SaveChanges();
 
             return RedirectToAction("RecipesList");
+        }
+
+        //-------------------------------------------------------------- LIKE RECIPE
+
+        public ActionResult LikeRecipe(Guid recipeId)
+        {
+            var like = new Like
+            {
+                UserId = User.Identity.GetUserId(),
+                RecipeId = recipeId
+            };
+
+            Db.Likes.Add(like);
+            Db.SaveChanges();
+
+            return RedirectToAction("ShowRecipe", new {id = recipeId});
+        }
+
+        //-------------------------------------------------------------- DISLIKE RECIPE
+
+        public ActionResult DisLikeRecipe(Guid recipeId)
+        {
+            var userId = User.Identity.GetUserId();
+            var like = Db.Likes.FirstOrDefault(l => l.RecipeId.Equals(recipeId) && l.UserId.Equals(userId));
+
+            Db.Likes.Remove(like);
+            Db.SaveChanges();
+
+            return RedirectToAction("ShowRecipe", new { id = recipeId });
         }
 
         //-------------------------------------------------------------- ADD INGREDIENT

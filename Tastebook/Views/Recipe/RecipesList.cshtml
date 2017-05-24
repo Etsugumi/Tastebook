@@ -18,7 +18,6 @@
             @if (User.Identity.IsAuthenticated && User.Identity.GetUserId().Equals(@recipe.AuthorId))
             {
                 @Html.ActionLink("USUN", "DeleteRecipe", "Recipe", new { id = @recipe.RecipeId }, null)
-                @Html.ActionLink("EDYTUJ", "EditRecipe", "Recipe", new { id = @recipe.RecipeId }, null)
             }
         </li>
     }

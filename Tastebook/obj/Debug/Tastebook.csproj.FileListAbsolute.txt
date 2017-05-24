@@ -64,7 +64,6 @@ H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\bin\Microsoft.Owin.Se
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\bin\Microsoft.Owin.Security.Google.xml
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\bin\Microsoft.Owin.Security.Twitter.xml
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.csprojResolveAssemblyReference.cache
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.dll
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.pdb
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.Initial.resources
@@ -79,3 +78,9 @@ H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.M
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.OOO.resources
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.AAA.resources
 H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.opa.resources
+H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\bin\evohtmltopdf.dll
+H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\bin\evohtmltopdf.xml
+H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\bin\evointernal.dat
+H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.KKA.resources
+H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.csprojResolveAssemblyReference.cache
+H:\5. PROJEKTY VISUAL STUDIO\TasteBook\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.KKAD.resources

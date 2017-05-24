@@ -6,7 +6,7 @@
 <ul>
     @foreach (var comment in @Model.MyComments)
     {
-        <li>[@comment.Created] @comment.Text</li>
+        <li>[@comment.Created] @comment.Text | @Html.ActionLink("Zobacz przepis","ShowRecipe","Recipe", new {}, new {}) | @Html.ActionLink("X", "DeleteComment", "Comment", new { commentId = comment.CommentId, returnUrl = Url.Action("Index") }, new { })</li>
     }
 </ul>
 

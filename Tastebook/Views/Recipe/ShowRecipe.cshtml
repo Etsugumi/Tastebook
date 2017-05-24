@@ -1,15 +1,32 @@
-﻿@model Tastebook.Models.RecipeDetailsViewModel
-    
+﻿@using Microsoft.AspNet.Identity
+@model Tastebook.Models.RecipeDetailsViewModel
+
 <div>
     <h3>@Model.Recipe.Name</h3>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (@Model.CanLike)
+        {
+            <a href="@Url.Action("LikeRecipe", "Recipe", new {recipeId = @Model.Recipe.RecipeId})" class="btn btn-default">+</a>
+        }
+        else
+        {
+            <a href="@Url.Action("DisLikeRecipe", "Recipe", new {recipeId = @Model.Recipe.RecipeId})" class="btn btn-info">+</a>
+        }
+    }
+
+    <h4>@Model.Likes poleceń</h4>
+
     <hr />
     <div>
         <h6>Typ: @Model.Recipe.RecipeType</h6>
         <h6>Trudność: @Model.Recipe.Difficulty</h6>
         <h6>Wielkość porcji: @Model.Recipe.DishSize</h6>
     </div>
-    <hr/>
-    <p>@Model.Recipe.Text</p>
+    <hr />
+    <h5><strong>Przygotowanie</strong></h5>
+    <p style="white-space: pre-wrap">@Model.Recipe.Text</p>
     <hr />
     <h5><strong>Składniki</strong></h5>
     <ul>
@@ -18,32 +35,58 @@
             <li>@ing.Name (@ing.Amount)</li>
         }
     </ul>
-    
-    <br />
-    <br />
-    
-    <hr />
-    
+
     @if (User.Identity.IsAuthenticated)
     {
+        <hr />
+
         using (Html.BeginForm("AddComment", "Comment", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(model => model.Recipe.RecipeId)
 
-            @Html.TextBoxFor(model => model.CommentDummy.Text, new { @class = "form-control", placeholder = "Skomentuj przepis..." })
-
-            <button type="submit" class="btn btn-success">Dodaj komentarz</button>
+            <div class="row">
+                <div class="col-xs-9">
+                    @Html.TextBoxFor(model => model.CommentDummy.Text, new { @class = "form-control", placeholder = "Skomentuj przepis..." })
+                </div>
+                <button type="submit" class="btn btn-success col-xs-2">Dodaj komentarz</button>
+            </div>
         }
     }
 
-    <hr/>
+    <hr />
 
-    <h5><strong>Komentarze</strong></h5>
-    <ul>
-        @foreach (var comment in Model.Comments)
-        {
-            <li>@comment.AuthorName | @comment.Text</li>
-        }
-    </ul>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="text-center">
+            <h3><small>Zaloguj się aby móc dodawać kometarze.</small></h3>
+        </div>
+
+        <hr />
+    }
+
+    @if (Model.Comments.Count > 0)
+    {
+        <h5><strong>Komentarze</strong></h5>
+        <ul>
+            @foreach (var comment in Model.Comments)
+            {
+                <li>
+                    @comment.AuthorName | @comment.Text
+                    @if (@comment.AuthorId.Equals(User.Identity.GetUserId()) && User.Identity.IsAuthenticated)
+                    {
+                        <text> | </text>
+                        @Html.ActionLink("X", "DeleteComment", "Comment", new { commentId = comment.CommentId, returnUrl = Url.Action("ShowRecipe", new { id = @Model.Recipe.RecipeId }) }, new { })
+                    }
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="text-center">
+            <h3><small>Jeszcze nikt nie skomentował tego przepisu.</small></h3>
+        </div>
+    }
+
 </div>
