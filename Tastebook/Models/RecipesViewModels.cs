@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 using Tastebook.Models.EFModels;
@@ -18,6 +19,9 @@ namespace Tastebook.Models
         public Ingredient Ingredient { get; set; }
         public Recipe Recipe { get; set; }
         public Guid RecipeId { get; set; }
+
+        public List<Image> Images { get; set; }
+        public HttpPostedFileBase file { get; set; }
     }
 
     public class RecipeDetailsViewModel

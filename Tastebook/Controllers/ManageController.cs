@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -7,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Tastebook.Models;
+using Tastebook.Models.EFModels;
 
 namespace Tastebook.Controllers
 {
@@ -53,6 +55,15 @@ namespace Tastebook.Controllers
         public async Task<ActionResult> Index()
         {
             var userId = User.Identity.GetUserId();
+            var likeMaps = Db.Likes.Where(l => l.UserId.Equals(userId)).ToList();
+            var likedRecipes = new List<Recipe>();
+
+            foreach (var map in likeMaps)
+            {
+                var likedRecipe = Db.Recipes.Find(map.RecipeId);
+                likedRecipes.Add(likedRecipe);
+            }
+
             var model = new IndexViewModel
             {
                 //HasPassword = HasPassword(),
@@ -61,7 +72,8 @@ namespace Tastebook.Controllers
                 //Logins = await UserManager.GetLoginsAsync(userId),
                 //BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
                 MyComments = Db.Comments.Where(c => c.AuthorName.Equals(User.Identity.Name)).ToList(),
-                MyRecipes = Db.Recipes.Where(r=>r.AuthorId.Equals(userId)).ToList()
+                MyRecipes = Db.Recipes.Where(r=>r.AuthorId.Equals(userId)).ToList(),
+                LikedRecipes = likedRecipes
             };
 
             return View(model);

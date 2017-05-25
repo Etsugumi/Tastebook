@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Tastebook.Models;
@@ -254,6 +256,46 @@ namespace Tastebook.Controllers
             Session["ingrBag"] = item;
 
             return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FileUpload( IngredientViewModel model )
+        {
+            var file = model.file;
+
+            if( file != null )
+            {
+                var guid = Guid.NewGuid();
+                var recipeId = model.RecipeId;
+
+                string pic = System.IO.Path.GetFileName( guid.ToString() );
+                string path = System.IO.Path.Combine(Server.MapPath( _ImageUploadPath ), pic );
+                
+                file.SaveAs( path );
+
+                var imageMap = new RecipeImageMap
+                {
+                    RecipeId = recipeId,
+                    ImageId = guid
+                };
+
+                Db.ImagesMaps.Add(imageMap);
+                Db.SaveChanges();
+
+                var image = new Image
+                {
+                    ImageId = guid,
+                    Uploaded = DateTime.Now,
+                    UserId = User.Identity.GetUserId()
+                };
+
+                Db.Images.Add(image);
+                Db.SaveChanges();
+            }
+
+            var item = Session["ingrBag"] as IngredientViewModel;
+            return RedirectToAction( "AddIngredient", item );
         }
 
         public void CreateIngredientMap(IngredientViewModel model)

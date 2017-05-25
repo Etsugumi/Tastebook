@@ -10,5 +10,7 @@ namespace Tastebook.Controllers
     public class BaseController : Controller
     {
         protected ApplicationDbContext Db = new ApplicationDbContext();
+
+        protected string _ImageUploadPath = "~/Uploads/Images";
     }
 }

@@ -15,6 +15,7 @@ namespace Tastebook.Models
         //public bool BrowserRemembered { get; set; }
         public List<Comment> MyComments { get; set; }
         public List<Recipe> MyRecipes { get; set; }
+        public List<Recipe> LikedRecipes { get; set; }
     }
 
     public class ManageLoginsViewModel

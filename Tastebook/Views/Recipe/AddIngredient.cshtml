@@ -43,6 +43,27 @@
         </text>
     }
 
+    <h5><strong>Zdjęcia:</strong></h5>
+    <ul>
+        @foreach (var image in Model.Images)
+        {
+
+            <li><img alt="" src="~/Uploads/Images/@image.ImageId" style="width: 20px; height: 20px;"/></li>
+        }
+    </ul>
+
+    <hr />
+    
+    @using (Html.BeginForm("FileUpload", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {  
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.RecipeId)
+
+        <label for="file">Upload Image:</label> 
+        <input type="file" name="file" id="file" style="width: 100%;" /> 
+        <input type="submit" value="Upload" class="submit" /> 
+    }
+
     <hr />
 
     <a href="@Url.Action("CompleteRecipe", new { id = @Model.RecipeId })" class="btn btn-success">Zakończ tworzenie przepisu</a>

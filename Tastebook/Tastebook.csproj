@@ -231,11 +231,16 @@
     <Compile Include="Migrations\201705242040001_KKAD.Designer.cs">
       <DependentUpon>201705242040001_KKAD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705251644497_jaskd.cs" />
+    <Compile Include="Migrations\201705251644497_jaskd.Designer.cs">
+      <DependentUpon>201705251644497_jaskd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EFModels\Comment.cs" />
     <Compile Include="Models\EFModels\Ingredient.cs" />
     <Compile Include="Models\EFModels\Recipe.cs" />
+    <Compile Include="Models\EFModels\RecipeImage.cs" />
     <Compile Include="Models\EFModels\RecipeType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -305,6 +310,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Images\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\Ingredients\" />
@@ -357,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705242040001_KKAD.resx">
       <DependentUpon>201705242040001_KKAD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705251644497_jaskd.resx">
+      <DependentUpon>201705251644497_jaskd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
