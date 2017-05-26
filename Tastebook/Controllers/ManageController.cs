@@ -72,7 +72,8 @@ namespace Tastebook.Controllers
                 //Logins = await UserManager.GetLoginsAsync(userId),
                 //BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
                 MyComments = Db.Comments.Where(c => c.AuthorName.Equals(User.Identity.Name)).ToList(),
-                MyRecipes = Db.Recipes.Where(r=>r.AuthorId.Equals(userId)).ToList(),
+                MyRecipes = Db.Recipes.Where(r=>r.AuthorId.Equals(userId) && r.isCompleted == true).ToList(),
+                NotPublishedRecipes = Db.Recipes.Where( r => r.AuthorId.Equals( userId ) && r.isCompleted == false ).ToList(),
                 LikedRecipes = likedRecipes
             };
 

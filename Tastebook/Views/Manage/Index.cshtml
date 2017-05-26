@@ -12,11 +12,21 @@
 
 <hr />
 
-<h5>Moje przepisy</h5>
+<h5>Opublikowane przepisy</h5>
 <ul>
     @foreach (var recipe in @Model.MyRecipes)
     {
         <li>@recipe.Name | @Html.ActionLink( "Zobacz przepis", "ShowRecipe", "Recipe", new { id = @recipe.RecipeId }, new { } )</li>
+    }
+</ul>
+
+<hr />
+
+<h5>Oczekujące przepisy</h5>
+<ul>
+    @foreach( var recipe in @Model.NotPublishedRecipes )
+    {
+        <li>@recipe.Name | @Html.ActionLink( "Edytuj przepis", "AddIngredient", "Recipe", new { recipeId = @recipe.RecipeId }, new { } )</li>
     }
 </ul>
 

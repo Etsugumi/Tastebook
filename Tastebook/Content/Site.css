@@ -1,3 +1,21 @@
 ﻿body {
     padding-top: 50px;
 }
+
+.dropzone {
+    background: transparent;
+    border: #e0e0e0 dashed 1px;
+    padding: 50px;
+    text-align: center;
+    color: #333;
+}
+
+.dropzone.dz-started .dz-default{
+    display: none;
+}
+
+.dz-default {
+    color: #e0e0e0;
+    font-size: 2em;
+    margin-bottom: 15px;
+}

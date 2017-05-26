@@ -52,6 +52,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -235,6 +239,10 @@
     <Compile Include="Migrations\201705251644497_jaskd.Designer.cs">
       <DependentUpon>201705251644497_jaskd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705261416288_test231.cs" />
+    <Compile Include="Migrations\201705261416288_test231.Designer.cs">
+      <DependentUpon>201705261416288_test231.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EFModels\Comment.cs" />
@@ -257,6 +265,14 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dropzone\basic.css" />
+    <Content Include="Scripts\dropzone\basic.min.css" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\dropzone\dropzone.css" />
+    <Content Include="Scripts\dropzone\dropzone.js" />
+    <Content Include="Scripts\dropzone\dropzone.min.css" />
+    <Content Include="Scripts\dropzone\dropzone.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -311,9 +327,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Images\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\Comment\" />
-    <Folder Include="Views\Ingredients\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -366,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705251644497_jaskd.resx">
       <DependentUpon>201705251644497_jaskd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705261416288_test231.resx">
+      <DependentUpon>201705261416288_test231.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

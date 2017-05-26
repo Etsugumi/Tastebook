@@ -171,3 +171,6 @@ C:\Users\KacperPopczynski\Documents\Visual Studio 2015\Projects\Tastebook\Tasteb
 C:\Users\KacperPopczynski\Documents\Visual Studio 2015\Projects\Tastebook\Tastebook\obj\Debug\Tastebook.dll
 C:\Users\KacperPopczynski\Documents\Visual Studio 2015\Projects\Tastebook\Tastebook\obj\Debug\Tastebook.pdb
 C:\Users\KacperPopczynski\Documents\Visual Studio 2015\Projects\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.jaskd.resources
+C:\Users\KacperPopczynski\Documents\Visual Studio 2015\Projects\Tastebook\Tastebook\obj\Debug\Tastebook.Migrations.test231.resources
+C:\Users\KacperPopczynski\Documents\Visual Studio 2015\Projects\Tastebook\Tastebook\bin\nunit.framework.dll
+C:\Users\KacperPopczynski\Documents\Visual Studio 2015\Projects\Tastebook\Tastebook\bin\nunit.framework.xml

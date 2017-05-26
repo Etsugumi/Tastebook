@@ -54,19 +54,21 @@
 
     <hr />
     
-    @using (Html.BeginForm("FileUpload", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {  
+    @using (Html.BeginForm( "SaveUploadedFile", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data", @class="dropzone", id="dropzoneForm" }))
+    {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.RecipeId)
 
-        <label for="file">Upload Image:</label> 
-        <input type="file" name="file" id="file" style="width: 100%;" /> 
-        <input type="submit" value="Upload" class="submit" /> 
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+            <input type="submit" value="Upload" />
+        </div>
     }
 
     <hr />
-
-    <a href="@Url.Action("CompleteRecipe", new { id = @Model.RecipeId })" class="btn btn-success">Zakończ tworzenie przepisu</a>
+    
+    <a href="@Url.Action("RecipesList", new {})" class="btn btn-default">Powrót do listy przepisów</a>
+    <a href="@Url.Action("CompleteRecipe", new { id = @Model.RecipeId })" class="btn btn-success">Opublikuj przepis</a>
 </div>
 
 @section scripts
@@ -75,6 +77,16 @@
         $(function() {
             var inputs = $("#ingrInputs input");
             inputs.val("");
+
+            Dropzone.options.dropzoneForm = {
+                init: function () {
+                    this.on("complete", function (data) {
+                        //var res = eval('(' + data.xhr.responseText + ')');
+                        var res = JSON.parse(data.xhr.responseText);
+                        console.log(res);
+                    });
+                }
+            };
         });
     </script>
 }
