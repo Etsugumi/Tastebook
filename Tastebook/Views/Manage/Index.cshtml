@@ -1,41 +1,49 @@
 ﻿@model Tastebook.Models.IndexViewModel
 
-<h3>Hello, @User.Identity.Name</h3>
+@if (@Model.NotPublishedRecipes.Count > 0)
+{
+    <div class="accountCard">
+        <span class="title">Oczekujące przepisy</span>
+        <ul>
+            @foreach (var recipe in @Model.NotPublishedRecipes)
+            {
+                <li>
+                    @Html.ActionLink(@recipe.Name, "AddIngredient", "Recipe", new { recipeId = @recipe.RecipeId }, new { @class = "btn btn-recipe" })
+                </li>
+            }
+        </ul>
+    </div>
+}
 
-<h5>Moje komentarze</h5>
-<ul>
-    @foreach (var comment in @Model.MyComments)
-    {
-        <li>[@comment.Created] @comment.Text | @Html.ActionLink("X", "DeleteComment", "Comment", new { commentId = comment.CommentId, returnUrl = Url.Action("Index") }, new { })</li>
-    }
-</ul>
+<div class="accountCard">
+    <span class="title">Twoje przepisy</span>
+    <ul>
+        @foreach (var recipe in @Model.MyRecipes)
+        {
+            <li>
+                @Html.ActionLink(@recipe.Name, "ShowRecipe", "Recipe", new { id = @recipe.RecipeId }, new { @class = "btn btn-recipe" })
+            </li>
+        }
+    </ul>
+</div>
 
-<hr />
-
-<h5>Opublikowane przepisy</h5>
-<ul>
-    @foreach (var recipe in @Model.MyRecipes)
-    {
-        <li>@recipe.Name | @Html.ActionLink( "Zobacz przepis", "ShowRecipe", "Recipe", new { id = @recipe.RecipeId }, new { } )</li>
-    }
-</ul>
-
-<hr />
-
-<h5>Oczekujące przepisy</h5>
-<ul>
-    @foreach( var recipe in @Model.NotPublishedRecipes )
-    {
-        <li>@recipe.Name | @Html.ActionLink( "Edytuj przepis", "AddIngredient", "Recipe", new { recipeId = @recipe.RecipeId }, new { } )</li>
-    }
-</ul>
-
-<hr />
-
-<h5>Polecone przepisy</h5>
-<ul>
-    @foreach( var recipe in @Model.LikedRecipes )
-    {
-        <li>@recipe.Name | @Html.ActionLink( "Zobacz przepis", "ShowRecipe", "Recipe", new { id = @recipe.RecipeId }, new { } )</li>
-    }
-</ul>
+<div class="row">
+    <div class="col-xs-6">
+        <h5>Moje komentarze</h5>
+        <ul>
+            @foreach (var comment in @Model.MyComments)
+            {
+                <li>[@comment.Created] @comment.Text | @Html.ActionLink("X", "DeleteComment", "Comment", new { commentId = comment.CommentId, returnUrl = Url.Action("Index") }, new { })</li>
+            }
+        </ul>
+    </div>
+    <div class="col-xs-6">
+        <h5>Polecone przepisy</h5>
+        <ul>
+            @foreach (var recipe in @Model.LikedRecipes)
+            {
+                <li>@recipe.Name | @Html.ActionLink("Zobacz przepis", "ShowRecipe", "Recipe", new { id = @recipe.RecipeId }, new { })</li>
+            }
+        </ul>
+    </div>
+</div>

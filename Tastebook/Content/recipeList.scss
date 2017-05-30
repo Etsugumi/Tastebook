@@ -1,0 +1,101 @@
+﻿@import "fonts.scss";
+@import "mixins.scss";
+@import "pallette.scss";
+@import "animations.scss";
+
+.recipeList {
+}
+
+.recipeListTitle {
+    margin: 60px 0;
+    margin-bottom: 30px;
+    font-size: 5em;
+    font-weight: bold;
+    font-family: Damion;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #e5e5e5;
+
+    .fa {
+        color: $primary;
+        font-weight: bold;
+    }
+}
+
+.recipe {
+    @include flex(row, flex-start, center);
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.recipe {
+
+    &:not(:first-child){
+        margin-top: 30px;
+    }
+
+    .recipeCol > * {
+        padding: 15px;
+    }
+
+    .recipeCol:nth-child(1){
+        padding: 15px;
+        background-color: #f5f5f5;
+    }
+
+    .recipeCol:nth-child(2) {
+        flex: 1;
+
+        a {
+            color: $primary;
+            font-weight: bold;
+        }
+
+        & a:hover {
+            color: $primaryLight;
+        }
+    }
+
+    .recipeCol:nth-child(3){
+        & > *{
+            padding: 15px 0px;
+        }
+    }
+
+    .recipeCol:nth-child(4){        
+        margin-left: 45px;
+        margin-right: 45px;
+
+        & > *{
+            padding: 15px 0px;
+        }
+    }
+
+    .recipeCol:last-child a {
+        padding: 10px 15px;
+        background-color: #e5e5e5;
+        position: relative;
+
+        &:hover{
+            color: $textColor;
+            background-color: $primary;
+        }
+
+        &:hover .tool-tip{
+            display: flex;
+        }
+    }
+
+    .tool-tip {
+        position: absolute;
+        z-index: 100;
+        bottom: 0;
+        left: 100%;
+        top: 0;
+
+        min-width: 150px;
+        color: $textColor;
+        background-color: $primaryText;
+        @include flex(row, center, center);
+        display: none;
+    }
+}

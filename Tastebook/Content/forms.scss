@@ -1,0 +1,48 @@
+﻿@import "fonts.scss";
+@import "mixins.scss";
+@import "pallette.scss";
+@import "animations.scss";
+
+.form-title {
+    display: table;
+    padding: 100px 0;
+    font-family: Damion;
+    font-weight: bold;
+    color: $primary;
+    font-size: 4em;
+
+    @include noUserSelect;
+}
+
+.formImage {
+    @include noUserSelect;
+    background-image: repeating-linear-gradient(45deg, $primary, $primary 35px, $primaryDark 35px, $primaryDark 70px);
+    min-height: 100%;
+    min-height: 100vh;
+    padding: 350px 150px;
+}
+
+.formImage > .formMotto {
+    display: table;
+    color: $textColor;
+    font-family: Damion;
+    font-size: 4em;
+    animation: breath 3s ease-in-out infinite none;
+
+    small {
+        display: block;
+        padding-top: 30px;
+        font-size: 0.6em;
+        color: $primaryLight;
+    }
+}
+
+form {
+    @include noUserSelect;
+    padding: 15px;
+}
+
+
+.form-footer {
+    padding-top: 50px;
+}

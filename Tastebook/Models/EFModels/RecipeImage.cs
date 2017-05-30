@@ -21,6 +21,9 @@ namespace Tastebook.Models.EFModels
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ImageId { get; set; }
+        public string FullName { get; set; }
+        public string Name { get; set; }
+        public string Extension { get; set; }
         public string UserId { get; set; }
         public DateTime? Uploaded { get; set; }        
     }

@@ -14,47 +14,61 @@
             <hr />
             <h6>Typ dania: @Model.Recipe.RecipeType</h6>
             <h6>Rozmiar porcji: @Model.Recipe.DishSize</h6>
-            <h6>Trudność: @Model.Recipe.Difficulty</h6>            
+            <h6>Trudność: @Model.Recipe.Difficulty</h6>
             <hr />
             <h5><strong>Opis:</strong></h5>
             <p style="white-space: pre-wrap">@Model.Recipe.Text</p>
         </div>
 
-        <hr />
+        <div class="addedIngredients">
+            <div class="title">Dodane składniki</div>
 
-        <h5><strong>Składniki:</strong></h5>
-        <ul>
-            @foreach (var ingr in Model.Ingredients)
+            @if (Model.Ingredients.Count > 0)
             {
-
-                <li>@ingr.Name (@ingr.Amount)</li>
+                <ul>
+                    @foreach (var ingr in Model.Ingredients)
+                    {
+                        <li>@Html.ActionLink(" ", "RemoveIngredient", "Recipe", new {id = @ingr.IngredientId, recipeId = @Model.RecipeId}, new {@class = "fa fa-times"})@ingr.Name (@ingr.Amount)</li>
+                    }
+                </ul>
             }
-        </ul>
-
-        <hr />
+            else
+            {
+                <div class="info">Jeszcze nie dodano żadnych składników do tego przepisu...</div>
+            }
+        </div>
 
         <text>
-            <div id="ingrInputs" class="form-group">                
+            <div id="ingrInputs" class="form-group">
                 @Html.TextBoxFor(model => model.Ingredient.Name, new { @class = "form-control", placeholder = "Nazwa składnika" })
                 @Html.TextBoxFor(model => model.Ingredient.Amount, new { @class = "form-control", placeholder = "Ilość składnika" })
             </div>
 
             <button id="addIngredientBtn" type="submit" class="btn btn-default">Dodaj składnik</button>
         </text>
-    }
-
-    <h5><strong>Zdjęcia:</strong></h5>
-    <ul>
-        @foreach (var image in Model.Images)
-        {
-
-            <li><img alt="" src="~/Uploads/Images/@image.ImageId" style="width: 20px; height: 20px;"/></li>
-        }
-    </ul>
+    }    
+    
+    <div class="uploadedPhotos">
+        <div class="title">
+            Dodane zdjęcia
+        </div>
+        
+        <div class="uploadedPhotosContainer">
+            @foreach (var image in Model.Images)
+            {
+                <text>
+                    <div class="recipeThumbnail">
+                        <img alt="" src="~/Uploads/Images/@image.FullName" />
+                        <a href="@Url.Action("RemoveFile", new { id = @image.ImageId, recipeId = @Model.RecipeId })" class="fa fa-times"></a>
+                    </div>
+                </text>
+            }
+        </div>        
+    </div>
 
     <hr />
-    
-    @using (Html.BeginForm( "SaveUploadedFile", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data", @class="dropzone", id="dropzoneForm" }))
+
+    @using (Html.BeginForm("FileUpload", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.RecipeId)
@@ -66,7 +80,7 @@
     }
 
     <hr />
-    
+
     <a href="@Url.Action("RecipesList", new {})" class="btn btn-default">Powrót do listy przepisów</a>
     <a href="@Url.Action("CompleteRecipe", new { id = @Model.RecipeId })" class="btn btn-success">Opublikuj przepis</a>
 </div>
@@ -74,16 +88,16 @@
 @section scripts
 {
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             var inputs = $("#ingrInputs input");
             inputs.val("");
 
             Dropzone.options.dropzoneForm = {
+                maxFileSize: 2,
+                maxFiles: 3,
                 init: function () {
                     this.on("complete", function (data) {
-                        //var res = eval('(' + data.xhr.responseText + ')');
                         var res = JSON.parse(data.xhr.responseText);
-                        console.log(res);
                     });
                 }
             };

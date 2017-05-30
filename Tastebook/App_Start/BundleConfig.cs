@@ -25,12 +25,13 @@ namespace Tastebook
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/normalize.css",
+                      "~/Content/main.min.css"));
 
             bundles.Add( new ScriptBundle( "~/bundles/dropzonescripts" ).Include(
                 "~/Scripts/dropzone/dropzone.js" ) );
 
-            bundles.Add( new StyleBundle( "~/Content/dropzonescss" ).Include(
+            bundles.Add( new StyleBundle( "~/Content/dropzonecss" ).Include(
                 "~/Scripts/dropzone/css/basic.css",
                 "~/Scripts/dropzone/css/dropzone.css" ) );
         }

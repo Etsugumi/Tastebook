@@ -1,0 +1,62 @@
+﻿<nav class="navigationBar" data-visible="false">
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <ul>
+                <li class="accountMenu">
+                    <i id="menuToggle" class="fa fa-bars"></i>
+                    <i class="fa fa-user userIcon"></i>
+                    <a href="@Url.Action("Index","Manage")" class="userName menuBtn">
+                        @User.Identity.Name
+                    </a>
+                </li>
+                <li class="menuLi">
+                    <i class="fa fa-user"></i>
+                    @Html.ActionLink("Twoje konto", "Index", "Manage", new { }, new { @class = "menuBtn" })
+                </li>
+                <li class="menuLi">
+                    <i class="fa fa-list"></i>
+                    @Html.ActionLink("Lista przepisów", "RecipesList", "Recipe", new { }, new { @class = "menuBtn" })
+                </li>
+                <li class="menuLi">
+                    <i class="fa fa-plus"></i>
+                    @Html.ActionLink("Dodaj przepis", "AddRecipe", "Recipe", new { }, new { @class = "menuBtn" })
+                </li>
+            </ul>
+
+            <ul class="menuBottom">
+                <li class="menuLi">
+                    <i class="fa fa-sign-out"></i>
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="menuBtn">Wyloguj się</a>
+                </li>
+            </ul>
+        }
+    }
+    else
+    {
+        <ul>
+            <li class="accountMenu">
+                <i id="menuToggle" class="fa fa-bars"></i>
+                <i class="fa fa-lemon-o userIcon"></i>
+            </li>
+            <li class="menuLi">
+                <i class="fa fa-list"></i>
+                @Html.ActionLink("Lista przepisów", "RecipesList", "Recipe", new {}, new {@class = "menuBtn"})
+            </li>
+        </ul>
+
+        <ul class="menuBottom">
+            <li class="menuLi">
+                <i class="fa fa-sign-in"></i>
+                @Html.ActionLink("Logowanie", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "menuBtn" })
+            </li>
+            <li class="menuLi">
+                <i class="fa fa-handshake-o"></i>
+                @Html.ActionLink("Rejestracja", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "menuBtn" })
+            </li>
+        </ul>
+    }
+</nav>

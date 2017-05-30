@@ -3,35 +3,66 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    
+    <title>Tastebook</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+
     @Styles.Render("~/Content/css")
-    @Styles.Render( "~/Content/dropzonecss" )
-    @Scripts.Render("~/bundles/modernizr")    
+    @Styles.Render("~/Content/dropzonecss")
+    @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Przepisy", "RecipesList", "Recipe")</li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Dodaj przepis", "AddRecipe", "Recipe")</li>
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+    <div class="materialPopup">
+        <div class="popupWindow">
+            <div class="title">Usuwanie przepisu</div>
+            <div class="text">Czy na pewno chcesz usunąć wybrany przepis?</div>
+            <div class="buttons">
+                <a href="#" class="yes">Tak</a>
+                <a href="#" class="no">Nie</a>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
+
+    <div class="bodyContent">
+        @Html.Partial("_NavBar")
+        <div class="container">
+            @RenderBody()
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/dropzonescripts")
+
+    <script type="text/javascript">
+        $(function () {
+            var menu = $(".navigationBar");
+
+            $("#menuToggle").on('click',
+                function () {
+                    var visible = (menu.attr("data-visible") == "true");
+
+                    if (visible) {
+                        menu.attr("data-visible", false);
+                        $("#menuToggle").removeClass("fa-times");
+                        $("#menuToggle").addClass("fa-bars");
+                        menu.animate({
+                            right: "-250px"
+                        });                        
+                    } else {
+                        menu.attr("data-visible", true);
+                        $("#menuToggle").removeClass("fa-bars");
+                        $("#menuToggle").addClass("fa-times");                        
+                        menu.animate({
+                            right: "0px"
+                        });
+                    }
+                });
+        });
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>

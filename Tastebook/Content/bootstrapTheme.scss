@@ -1,0 +1,92 @@
+﻿@import "pallette.scss";
+@import "mixins.scss";
+@import "fonts.scss";
+
+.input[type="text"] {
+    border-radius: 0;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.btn-default {
+    color: $textColor;
+    border-color: $primary;
+    background-color: $primary;
+    @include transition(all, 0.3s);
+
+    &:hover {
+        color: $textColor;
+        border-color: $primary;
+        background-color: $primary;
+        box-shadow: none;
+        outline: none;
+    }
+
+    &:active, &:focus {
+        transform: scale(0.95);
+        color: $textColor;
+        border-color: $primary;
+        background-color: $primary;
+        box-shadow: none;
+        outline: none;
+    }
+}
+
+.btn-recipe {
+    padding: 5px;
+    text-align: left;
+    color: $primary;
+
+    &:hover {
+        color: $primaryDark;
+        text-decoration: underline;
+    }
+}
+
+//-------------------------------------------------
+//-------------------------------------------------
+//-------------------------------------------------
+
+.form-control {
+    border-radius: 0;
+    box-shadow: none;
+
+    &:focus {
+        box-shadow: none;
+        border-color: $primary;
+    }
+}
+
+//-------------------------------------------------
+//-------------------------------------------------
+//-------------------------------------------------
+
+.form-group .form-control {
+    margin-bottom: 5px;
+}
+
+//-------------------------------------------------
+//-------------------------------------------------
+//-------------------------------------------------
+
+.validation-summary-errors {
+    position: fixed;
+    top: 15px;
+    left: 0px;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li{
+            max-width: 350px;
+            margin-bottom: 5px;
+            padding: 15px 30px;
+            color: $textColor;
+            background-color: $primaryDark;
+        }
+    }
+}

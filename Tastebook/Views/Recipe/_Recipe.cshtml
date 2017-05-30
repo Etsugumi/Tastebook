@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+
+@foreach (var recipe in Model.Recipes)
+{
+    <div class="recipe">
+        <div class="recipeCol">
+            @recipe.Created
+        </div>
+        <div class="recipeCol">
+            <a href="@Url.Action("ShowRecipe", new { id = recipe.RecipeId })">@recipe.Name</a>
+        </div>
+        <div class="recipeCol">
+            @for (var i = 0; i < recipe.DishSize; i++)
+            {
+                <i class="fa fa-male"></i>
+            }
+        </div>
+        <div class="recipeCol">
+            @for (var i = 0; i < recipe.Difficulty; i++)
+            {
+                <i class="fa fa-cogs"></i>
+            }
+        </div>
+        <div class="recipeCol">
+            @if (User.Identity.IsAuthenticated && User.Identity.GetUserId().Equals(@recipe.AuthorId))
+            {
+                <a href="#" data-href="@Url.Action("DeleteRecipe", new {id = @recipe.RecipeId})" class="action removeAction">
+                    <i class="fa fa-times"></i>
+                    <div class="tool-tip">
+                        <div>Usuń przepis</div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+}

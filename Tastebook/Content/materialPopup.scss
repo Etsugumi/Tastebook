@@ -1,0 +1,50 @@
+﻿@import "fonts.scss";
+@import "mixins.scss";
+@import "pallette.scss";
+
+.materialPopup {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background-color: transparentize($primaryText, .3);
+    @include flex(column, center, center);
+    display: none;
+}
+
+.materialPopup > .popupWindow {
+    padding: 25px;
+    background-color: $textColor;
+
+    .title {
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .text {
+        font-size: 1.5em;
+        padding: 15px 0;
+    }
+
+    .buttons {
+        @include flex(row, flex-end, center);
+
+        a {
+            color: $primary;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px 20px;
+
+            &:first-child {
+                margin-right: 5px;
+            }
+
+            &:hover {
+                background-color: $primaryLight;
+            }
+        }
+    }
+}

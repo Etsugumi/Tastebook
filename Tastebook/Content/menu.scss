@@ -1,0 +1,109 @@
+﻿@import "pallette.scss";
+@import "mixins.scss";
+@import "fonts.scss";
+
+.navigationBar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: -250px;
+    bottom: 0;
+    background-color: $textColor;
+    /*box-shadow: -2px 0px 5px transparentize($primaryLight, 0.7);*/
+}
+
+.navigationBar #logoutForm {
+    @include clearFix;
+    padding: 0;
+}
+
+.navigationBar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+}
+
+.menuLi {
+    font-size: 1em;
+    @include flex(row, flex-start, center);
+
+    &:hover {
+        background-color: #e5e5e5;
+    }
+
+    .fa {
+        width: 50px;
+        line-height: 1.1;
+        text-align: center;
+    }
+}
+
+.navigationBar ul li a {
+    display: block;
+    padding: 10px 15px;
+}
+
+.navigationBar .menuBtn {
+    flex: 1;
+}
+
+.navigationBar .logOutBtn {
+    position: absolute;
+    z-index: 1001;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+}
+
+#menuToggle {
+    position: absolute;
+    z-index: 1001;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    color: $textColor;
+    font-size: 1.5em;
+
+    @include transition(all, 0.3s);
+
+    &:focus {
+        transform: scale(1);
+    }
+
+    &:active {
+        transform: scale(0.8);
+    }
+}
+
+.accountMenu {
+    background-color: $primary;
+    text-align: center;
+
+    .userIcon {
+        margin: 15px auto;
+        padding: 30px 40px;
+        font-size: 5em;
+        color: $primaryDark;
+        border-radius: 50%;
+        background-color: $textColor;
+    }
+
+    .userName {
+        display: block;
+        padding: 10px 15px;
+        text-align: center;
+        color: $textColor;
+
+        &:hover {
+            background-color: $primaryDark;
+        }
+    }
+}
+
+.menuBottom{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;    
+}

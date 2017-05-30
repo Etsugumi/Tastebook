@@ -1,0 +1,29 @@
+﻿@mixin transition($target, $time){
+    transition: $target $time;
+    -o-transition: $target $time;
+    -moz-transition: $target $time;
+    -webkit-transition: $target $time;
+}
+
+@mixin flex($direction, $justyfi, $align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justyfi;
+    align-items: $align;
+}
+
+@mixin noUserSelect{
+    cursor: default;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+@mixin clearFix{
+    &::after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+}

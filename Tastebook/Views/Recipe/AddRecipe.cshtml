@@ -1,8 +1,14 @@
 ﻿@model Tastebook.Models.EFModels.Recipe
 
-<h2>Tworzenie nowego przepisu <small>(Krok 1 z 2)</small></h2>
+<div class="pageHeader">
+    <div class="pageTitle">
+        <a href="@Url.Action("RecipesList")" class="action fa fa-chevron-left"></a>
+        <div class="text">Tworzenie nowego przepisu</div>
+        <div class="textSmall">Krok 1 z 2</div>
+    </div>
+</div>
 
-@using (Html.BeginForm("AddRecipe", "Recipe", FormMethod.Post, new { id = "recipeForm" }))
+@using (Html.BeginForm("AddRecipe", "Recipe", FormMethod.Post, new { id = "recipeForm", @class = "materialForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -13,13 +19,15 @@
 
     <text>
         <div class="form-group">
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Nazwa przepisu" })
-            @Html.TextAreaFor(model => model.Text, new { @class = "form-control", placeholder = "Treść przepisu" })
-            @Html.TextBoxFor(model => model.Difficulty, new { @class = "form-control", placeholder = "Trudność" })
-            @Html.TextBoxFor(model => model.DishSize, new { @class = "form-control", placeholder = "Wielkość porcji" })
             @Html.EnumDropDownListFor(model => model.RecipeType, "- Typ przepisu -", new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.Name, new {@class = "form-control", placeholder = "Nazwa przepisu"})
+            @Html.TextAreaFor(model => model.Text, new {@class = "form-control", placeholder = "Treść przepisu"})
+            @Html.TextBoxFor(model => model.Difficulty, new {@class = "form-control", placeholder = "Trudność (0 ~ 3)"})
+            @Html.TextBoxFor(model => model.DishSize, new {@class = "form-control", placeholder = "Wielkość porcji"})
         </div>
 
-        <button type="submit" class="btn btn-default">Kontynuuj</button>
+        <div class="">
+            <button type="submit" class="btn btn-default">Kontynuuj</button>
+        </div>
     </text>
 }

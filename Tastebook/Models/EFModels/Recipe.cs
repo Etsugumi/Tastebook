@@ -21,7 +21,7 @@ namespace Tastebook.Models.EFModels
         public string Text { get; set; }
 
         [Required]
-        [Range(0, 2)]
+        [Range(1, 3)]
         public int Difficulty { get; set; }
 
         [Required]

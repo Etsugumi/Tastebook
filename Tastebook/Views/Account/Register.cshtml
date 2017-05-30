@@ -1,40 +1,41 @@
 ﻿@model Tastebook.Models.RegisterViewModel
+
 @{
-    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="container-fluid">
+    <div class="col-md-8 formImage">
+        <span class="formMotto">
+            "Food is your body's fuel. Without fuel, your body wants to shut down."
+            <small>Ken Hill</small>
+        </span>
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registerForm", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
+            <span class="form-title">Tastebook</span>
+            <h4>Załóż nowe konto zupełnie za darmo</h4>
+
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Adres email" })
+                @Html.ValidationMessageFor(model => model.Email)
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Twoje hasło" })
+                @Html.ValidationMessageFor(model => model.Password)
+                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Powtórz hasło" })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+            </div>
+
+            <a href="javascript:document.getElementById('registerForm').submit()" class="btn btn-lg btn-default">Załóż konto</a>
+            
+            <div class="form-footer">
+                @Html.ActionLink("Masz już konto? Zaloguj się!", "Login")
+            </div>
+        }
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

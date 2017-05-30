@@ -1,24 +1,16 @@
 ﻿@using Microsoft.AspNet.Identity
 @model Tastebook.Models.ListViewModel
 
-@{
-    ViewBag.Title = "RecipesList";
+<div class="recipeList">
+    <div class="recipeListTitle">
+        <i class="fa fa-lemon-o"></i>
+        <span>Tastebook</span>
+    </div>
+
+    @Html.Partial("_Recipe")
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/confirmDeleteRecipe.js"></script>
 }
-
-<h2>RecipesList</h2>
-
-<ul>
-    @foreach (var recipe in Model.Recipes)
-    {
-        <li>
-            @recipe.Name | Trudność: @recipe.Difficulty | Wielkość: @recipe.DishSize |
-
-            @Html.ActionLink("CZYTAJ", "ShowRecipe", "Recipe", new { id = @recipe.RecipeId }, null)
-
-            @if (User.Identity.IsAuthenticated && User.Identity.GetUserId().Equals(@recipe.AuthorId))
-            {
-                @Html.ActionLink("USUN", "DeleteRecipe", "Recipe", new { id = @recipe.RecipeId }, null)
-            }
-        </li>
-    }
-</ul>

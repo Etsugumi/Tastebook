@@ -1,0 +1,46 @@
+﻿@import "fonts.scss";
+@import "forms.scss";
+@import "dropzone.scss";
+@import "bootstrapTheme.scss";
+@import "materialPopup.scss";
+
+@import "loader.scss";
+@import "menu.scss";
+@import "recipeList.scss";
+@import "addRecipe.scss";
+
+body {
+    color: $primaryText;
+    font-size: 16px;
+    line-height: 1.1;
+    font-family: 'Source Sans Pro';
+    background-color: #efefef;
+}
+
+.bodyContent > .container{
+    background-color: $textColor;
+    box-shadow: 0 0 15px #e0e0e0;
+    min-height: 100%;
+    min-height: 100vh;
+
+    padding: 0 60px;
+}
+
+body a {
+    color: $primary;
+    text-decoration: none;
+    outline: none;
+
+    &:hover {
+        color: $primaryDark;
+    }
+
+    &:active, &:focus {
+        color: $primaryLight;
+    }
+
+    &:focus, &:active, &:hover {
+        text-decoration: none;
+        outline: none;
+    }
+}

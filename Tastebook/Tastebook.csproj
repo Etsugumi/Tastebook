@@ -243,6 +243,18 @@
     <Compile Include="Migrations\201705261416288_test231.Designer.cs">
       <DependentUpon>201705261416288_test231.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705262040112_FilesChanges.cs" />
+    <Compile Include="Migrations\201705262040112_FilesChanges.Designer.cs">
+      <DependentUpon>201705262040112_FilesChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705262047567_FilesChanges2.cs" />
+    <Compile Include="Migrations\201705262047567_FilesChanges2.Designer.cs">
+      <DependentUpon>201705262047567_FilesChanges2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705271318143_NWO.cs" />
+    <Compile Include="Migrations\201705271318143_NWO.Designer.cs">
+      <DependentUpon>201705271318143_NWO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EFModels\Comment.cs" />
@@ -259,19 +271,94 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css">
+      <DependentUpon>main.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="fonts\Source_Sans_Pro\OFL.txt" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\main.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\dropzone.scss" />
+    <Content Include="Content\mixins.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\fonts.scss" />
+    <Content Include="fonts\Condiment-Regular.ttf" />
+    <Content Include="Content\pallette.scss" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-Black.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-BlackItalic.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-Bold.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-BoldItalic.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-ExtraLight.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-ExtraLightItalic.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-Italic.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-Light.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-LightItalic.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-Regular.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-Semibold.ttf" />
+    <Content Include="fonts\Source_Sans_Pro\SourceSansPro-SemiboldItalic.ttf" />
+    <Content Include="fonts\Damion-Regular.ttf" />
+    <Content Include="Content\bootstrapTheme.scss" />
+    <Content Include="Content\materialPopup.scss" />
+    <Content Include="Content\forms.scss" />
+    <Content Include="Content\animations.scss" />
+    <Content Include="Content\loader.scss" />
+    <Content Include="Content\menu.scss" />
+    <Content Include="Content\recipeList.scss" />
+    <Content Include="Content\addRecipe.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\dropzone\basic.css" />
-    <Content Include="Scripts\dropzone\basic.min.css" />
+    <Content Include="Scripts\confirmDeleteRecipe.js" />
+    <Content Include="Scripts\dropzone\css\basic.css" />
+    <Content Include="Scripts\dropzone\css\basic.min.css" />
     <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
     <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
-    <Content Include="Scripts\dropzone\dropzone.css" />
+    <Content Include="Scripts\dropzone\css\dropzone.css" />
     <Content Include="Scripts\dropzone\dropzone.js" />
-    <Content Include="Scripts\dropzone\dropzone.min.css" />
+    <Content Include="Scripts\dropzone\css\dropzone.min.css" />
     <Content Include="Scripts\dropzone\dropzone.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -281,9 +368,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popup\popup.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\normalize.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -323,6 +412,10 @@
     <Content Include="Views\Recipe\EditRecipe.cshtml" />
     <Content Include="Views\Recipe\AddIngredient.cshtml" />
     <Content Include="Views\Recipe\ShowRecipe.cshtml" />
+    <Content Include="Views\Shared\_LayoutClean.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Shared\_Loader.cshtml" />
+    <Content Include="Views\Recipe\_Recipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -382,6 +475,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705261416288_test231.resx">
       <DependentUpon>201705261416288_test231.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705262040112_FilesChanges.resx">
+      <DependentUpon>201705262040112_FilesChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705262047567_FilesChanges2.resx">
+      <DependentUpon>201705262047567_FilesChanges2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705271318143_NWO.resx">
+      <DependentUpon>201705271318143_NWO.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
